@@ -20,7 +20,7 @@ function MeetingsPage() {
   const [notes, setNotes] = useState("");
   const ai = useAI("meeting");
   const submit = () => {
-    if (notes.trim().length < 20) return toast.error("Please paste your meeting notes (at least 20 characters).");
+    if (notes.trim().length < 20) { toast.error("Please paste your meeting notes (at least 20 characters)."); return; }
     ai.run(notes);
   };
   return (

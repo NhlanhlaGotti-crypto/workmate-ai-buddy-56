@@ -26,13 +26,13 @@ function PlannerPage() {
   const ai = useAI("planner");
 
   const add = () => {
-    if (!draft.name.trim()) return toast.error("Please enter a task name.");
-    if (!(Number(draft.hours) > 0)) return toast.error("Estimated time must be greater than 0.");
+    if (!draft.name.trim()) { toast.error("Please enter a task name."); return; }
+    if (!(Number(draft.hours) > 0)) { toast.error("Estimated time must be greater than 0."); return; }
     setTasks([...tasks, { ...draft, name: draft.name.trim() }]);
     setDraft(blank);
   };
   const plan = () => {
-    if (!tasks.length) return toast.error("Add at least one task first.");
+    if (!tasks.length) { toast.error("Add at least one task first."); return; }
     const today = new Date().toISOString().slice(0, 10);
     ai.run(`Today's date: ${today}\nTasks:\n` + tasks.map((t, i) => `${i + 1}. ${t.name} | Deadline: ${t.deadline || "none"} | Priority: ${t.priority} | Estimated: ${t.hours}h`).join("\n"));
   };

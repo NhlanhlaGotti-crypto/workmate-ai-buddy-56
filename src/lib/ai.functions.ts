@@ -12,7 +12,7 @@ const schema = z.object({
 export const generateAI = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => schema.parse(d))
   .handler(async ({ data }) => {
-    const key = process.env.LOVABLE_API_KEY;
+    const key = process.env['LOVABLE_API_KEY'];
     if (!key) return { ok: false as const, error: "AI is not configured (missing LOVABLE_API_KEY)." };
 
     const instructions = SYSTEM_PROMPTS[data.feature] + (data.simple ? SIMPLE_MODE : "");

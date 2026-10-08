@@ -21,7 +21,7 @@ function ResearchPage() {
   const [simple, setSimple] = useState(false);
   const ai = useAI("research");
   const submit = () => {
-    if (text.trim().length < 3) return toast.error("Please enter a topic or paste some information.");
+    if (text.trim().length < 3) { toast.error("Please enter a topic or paste some information."); return; }
     ai.run(text, simple);
   };
   return (
