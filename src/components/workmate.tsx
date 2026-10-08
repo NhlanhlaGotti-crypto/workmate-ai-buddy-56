@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { useServerFn } from "@tanstack/react-start";
 import { toast } from "sonner";
 import { Briefcase, Copy, Loader2, ShieldAlert, Menu, X, type LucideIcon } from "lucide-react";
@@ -150,7 +151,7 @@ export function Output({ text, loading, title }: { text: string; loading: boolea
         </div>
       ) : text ? (
         <div className="ai-output">
-          <ReactMarkdown>{text}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{text}</ReactMarkdown>
         </div>
       ) : (
         <div className="flex h-64 items-center justify-center rounded-xl border border-dashed border-border text-center text-sm text-muted-foreground">
