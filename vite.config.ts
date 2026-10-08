@@ -12,4 +12,8 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    // Pre-bundle these so Vite doesn't re-optimize mid-session and load a second React copy.
+    optimizeDeps: { include: ["react-markdown", "remark-gfm", "sonner", "lucide-react"] },
+  },
 });
